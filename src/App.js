@@ -1,6 +1,7 @@
 import './App.css';
 import Expenses from "./components/expenses/Expenses";
 import NewExpense from "./components/expenses/NewExpense";
+import ExpenseFilter from "./components/expenses/ExpensesFilter";
 
 
 function App() {
