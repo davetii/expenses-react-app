@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import './NewExpense.css';
 import ExpenseForm from "./ExpenseForm";
 const NewExpense =(props) => {
+    const [isEditMode, setIsEditMode] = useState(false);
 
     const saveData = (data) => {
         const expensedDate = {
@@ -10,9 +11,13 @@ const NewExpense =(props) => {
         props.onAddExpense(expensedDate);
     };
 
+    const resetForm = () => { setIsEditMode(false); }
+    const showEditMode = (event) => { setIsEditMode(true); }
+
 
     return <div className="new-expense">
-        <ExpenseForm onSave={saveData} />
+        { !isEditMode && <button onClick={showEditMode}>Add new Expense</button>}
+        { isEditMode && <ExpenseForm onSave={saveData} onReset={resetForm}/>}
     </div>
 }
 

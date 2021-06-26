@@ -10,6 +10,12 @@ const ExpenseForm = (props) => {
     const onDateChange = (event) =>  { setChangedDate(event.target.value); }
     const onAmountChange = (event) =>  { setChangedAmount(event.target.value); }
 
+    const resetForm = (event) => {
+        setChangedTitle('');
+        setChangedAmount('');
+        setChangedDate('');
+        props.onReset();
+    }
     const onSubmit = (event) => {
         event.preventDefault();
         const expenseData = {
@@ -17,11 +23,8 @@ const ExpenseForm = (props) => {
             amount : changedAmount,
             date: new Date(changedDate)
         };
-
         props.onSave(expenseData);
-        setChangedTitle('');
-        setChangedAmount('');
-        setChangedDate('');
+        resetForm();
     }
 
     return <form onSubmit={onSubmit}>
@@ -43,6 +46,7 @@ const ExpenseForm = (props) => {
             <input type="date" min="2019-01-01" max="2022-12-31" value={changedDate}  onChange={onDateChange}/>
         </div>
         <div className="new-expense__actions">
+            <button type="button" onClick={resetForm}>Cancel Expense</button>
             <button type="submit">Add Expense</button>
         </div>
     </form>
