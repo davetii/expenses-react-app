@@ -14,7 +14,6 @@ const NewExpense =(props) => {
     const resetForm = () => { setIsEditMode(false); }
     const showEditMode = (event) => { setIsEditMode(true); }
 
-
     return <div className="new-expense">
         { !isEditMode && <button onClick={showEditMode}>Add new Expense</button>}
         { isEditMode && <ExpenseForm onSave={saveData} onReset={resetForm}/>}
